@@ -1,11 +1,19 @@
 # minimum spanning tree algorithym
 
+G = { 'C': [('B', 3), ('G', 9), ('E', 8)],
+	  'A': [('B', 10), ('F', 2)], 
+	  'B': [('A', 10), ('C', 3), ('E', 4)],
+	  'D': [('E', 6)],
+	  'E': [('D', 6), ('C', 8), ('B', 4), ('F', 5)],
+	  'G': [('C', 9)],
+	  'F': [('A', 2), ('E', 5)] }
+
 G = { 'C': [('B', 5)],'A': [('B', 2)], 'B': [('A', 2), ('C', 5)]}
+
 G = { 'C': [('B', 5)],
 	  'A': [('B', 2), ('D', 4)], 
 	  'B': [('A', 2), ('C', 5), ('D', 6)],
 	  'D': [('A', 4), ('B', 6)] }
-
 # need weight, source, and destination for each node pair
 # don't need to get each direction because this is an undirected graph
 
@@ -34,14 +42,14 @@ def checkCircular(edge):
 		if not (v1 == y[0][0] and v2 == y[0][1]): # skip if it finds itself
 			if v1 in y[0]: # the vertex is in another vertex, add it to a temp list AB BC etc
 				templist1.append(y[0])
+				# find others that connect to it - "parents" (this helps to understand loop completion)
+
 				# continue checking recursively
 				# if len(templist1) == 0: continue # vertex not yet used, move onto next y
 				# should go to true or false
-			if v2 in y[0]: # the vertex is in another vertex, continue checking
+			if v2 in y[0]: # the vertex is in another vertex, add to list
 				templist2.append(y[0])
-				# if len(templist2) == 0: continue # vertex not yet used, move onto next y
-				# needs to go to true or false
-	
+				
 	for w in templist1:
 		for a in w:
 			for q in templist2:
@@ -66,13 +74,23 @@ def Question3(G):
 
 	# sort result by weight
 	f = sorted(result.items(), key=lambda x:x[1]) # makes a list of tuples sorted by weight
-	# [('AB', 2), ('AD', 4), ('CB', 5), ('BD', 6)] # order of vertices doesn't matter - undirected graph
+	
+	k = []
+	for dd in f:
+		k.append(dd[0][0])
+		k.append(dd[0][1])
 
+	# get total count of vertices ii 
+	gg = {pp for pp in k} # get unique values
+	gg = list(gg)
+	vlength = len(gg)
+	
 	for y in f: # gets the edges and tests in order ('AB', 2) ('AD', 4) ('CB', 5) ('BD', 6)
 		isCirc = checkCircular(y[0]) # AB, AD, CB, etc Check each edge to see if it's circular
-		if isCirc is not True:
+		if isCirc is False:
+			if len(edges) < vlength - 1: # number of potential edges one less than vertices
 			# add the edge
-			edges.append(y)
+				edges.append(y)
 			
 	return edges
 
