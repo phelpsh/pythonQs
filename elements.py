@@ -9,15 +9,15 @@
 
 class Node(object):
 
-  def __init__(self, data):
+  def __init__(self, data, next_node=None):
     self.data = data
-    self.next = None # first node in list has nothing to point at
+    self.next_node = next_node # first node in list has nothing to point at
 
   def get_data(self): 
   	return self.data 
 
   def get_next(self): 
-  	return self.next_node 
+  	return self.next_node
 
   def set_next(self, new_next): 
   	self.next_node = new_next 
@@ -30,46 +30,59 @@ class Node(object):
 
 class LinkedList:
 
-    def __init__(self):
-        self.cur_node = None
+    def __init__(self, head=None):
+        self.head = head
 
     def add_node(self, data):
         new_node = Node(data) # create a new node
-        new_node.data = data
-        new_node.next = self.cur_node # link the new node to the 'previous' node.
-        self.cur_node = new_node #  set the current node to the new one.
+        new_node.set_next(self.head) # link the new node to the 'previous' node.
+        self.head = new_node #  set the current node to the new one.
 
     def list_print(self):
         node = self.cur_node 
         while node:
-            print node.data
-            node = node.next
+            #print node.data
+            node = node.next_node
 
     def size(self): 
     	current = self.head 
-    	count = 0 
-    	while current: 
+    	count = 0
+    	while current != None: 
     		count += 1 
     		current = current.get_next() 
-    		return count # - 
+    	return count 
+
+    # def get_node_by_index(self, index) 
+    # 	current = self.head # starts at 0
+    # 	count = 0
+    # 	# cycle through until index number in list
+    # 	for 
+    # 	while current != None: 
+    # 		count += 1 
+    # 		current = current.get_next() 
+    # 	return count
 
 
 # Function to get the nth node from the last of a linked list
 
 # build a sample list
 ll = LinkedList()
-ll.add_node(1)
-ll.add_node(2)
+ll.add_node(6)
 ll.add_node(3)
+ll.add_node(1)
+ll.add_node(8)
 ll.add_node(4)
-ll.add_node(5)
 
 m = 3
 
 def Question5(ll, m):
 	# ll.list_print() # works
 	# find the total length of the sample list
-
+	lenll = ll.size()
+	#newspot = lenll - m
+	# for n in ll:
+	# 	print n
+	# need a "get all nodes"...
 
  
 Question5(ll, m)
