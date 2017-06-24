@@ -9,9 +9,10 @@
 
 class Node(object):
 
-  def __init__(self, data, next_node=None):
+  def __init__(self, data, next_node=None, position=0):
     self.data = data
     self.next_node = next_node # first node in list has nothing to point at
+    self.position = position
 
   def get_data(self): 
   	return self.data 
@@ -36,7 +37,9 @@ class LinkedList:
     def add_node(self, data):
         new_node = Node(data) # create a new node
         new_node.set_next(self.head) # link the new node to the 'previous' node.
+        
         self.head = new_node #  set the current node to the new one.
+        # need to give it a position?
 
     def list_print(self):
         node = self.cur_node 
@@ -52,9 +55,17 @@ class LinkedList:
     		current = current.get_next() 
     	return count 
 
-    # def get_node_by_index(self, index) 
-    # 	current = self.head # starts at 0
-    # 	count = 0
+    def get_node_by_index(self, index):
+     	current = self.head # starts at 0
+    	while current != None:
+    		print current.position
+    		current = current.get_next()
+	 #        if current.position == index:
+	 #            return current.data
+	 #        else:
+	 #            current = current.get_next
+		# print "item not present in list"
+
     # 	# cycle through until index number in list
     # 	for 
     # 	while current != None: 
@@ -79,10 +90,11 @@ def Question5(ll, m):
 	# ll.list_print() # works
 	# find the total length of the sample list
 	lenll = ll.size()
-	#newspot = lenll - m
+	newspot = lenll - m
 	# for n in ll:
 	# 	print n
 	# need a "get all nodes"...
+	print ll.get_node_by_index(newspot)
 
  
 Question5(ll, m)
