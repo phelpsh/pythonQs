@@ -21,7 +21,7 @@ The timing is O(m log n), but I believe this solution using Prim’s algorithm, 
 
 Question 4 (least common ancestor)
 
-I used an O(n) algorithm (where n is number of nodes) to find the least common ancestor by finding a path from the root to n1 and storing it, then doing the same for n2. Then I compared the two arrays (paths) and found the first common node in the paths, which is the least common ancestor.
+I used an O(n*2) algorithm (where n is number of nodes) to find the least common ancestor by finding a path from the root to n1 and storing it, then doing the same for n2. Then I compared the two arrays (paths) and found the first common node in the paths, which is the least common ancestor. The most difficult aspect of this question was understanding the basic structure of the tree. The way it was presented in the question as a dictionary of arrays was different from examples I could find. For each node, I repeated the cycle through to find all of the parents until it hit the root, and I suspect this can be done in a more elegant way.
 
 
 Question 5
