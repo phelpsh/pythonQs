@@ -16,7 +16,7 @@ Question 3 (minimum spanning tree)
 
 I thought this was the most difficult question of the five because of the complexity of moving parts and ensuring each vertex was accounted for only once while moving through all vertices. First I took all of the edges and ordered them by weight. Then I wrote a function checkCircular, which accepts an edge and examines whether either vertex of that edge is present in any other vertices which have already been examined. 
 
-The timing is O(m log n), but I believe this solution using Prim’s algorithm, which grows the tree one edge at a time. I realize there are other algorithms and better ways to solve this.
+The timing is O(m log n), but I believe this solution using Prim’s algorithm, which grows the tree one edge at a time. I realize there are other algorithms and better ways to solve this. I was not certain how to make it recursive, so I simply look at everything one by one.
 
 
 Question 4 (least common ancestor)
